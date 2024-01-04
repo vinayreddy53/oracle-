@@ -1,15 +1,17 @@
 version: "3.8"
 
 services:
-  craete_instance:  # Replace 'craete_instance' with a suitable service name
+  craete_instance:
     build:
       context: .
-    image: instance_image:latest  # Replace 'instance_image' with an appropriate image name
+    image: instance_image:latest
     command: python3 bot.py
+    ports:
+      - "8081:8081"  
     volumes:
       - ./oci_private_key.pem:/path/to/oci_private_key.pem
     environment:
-      CONFIG_FILE_PATH: ./config.bin  # Change '-' to '_' in the environment variable name
+      CONFIG_FILE_PATH: ./config.bin
     depends_on:
       - oci_registry
 
