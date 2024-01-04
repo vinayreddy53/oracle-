@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  craete_instance:  # Replace 'craete_instance' with a suitable service name
+    build:
+      context: .
+    image: instance_image:latest  # Replace 'instance_image' with an appropriate image name
+    command: python3 bot.py
+    volumes:
+      - ./oci_private_key.pem:/path/to/oci_private_key.pem
+    environment:
+      CONFIG_FILE_PATH: ./config.bin  # Change '-' to '_' in the environment variable name
+    depends_on:
+      - oci_registry
+
+  oci_registry:
+    image: docker.io/library/python:latest
+    command: /bin/sh -c "pip install -r requirements.txt"
+    volumes:
+      - .:/app
+    working_dir: /app
