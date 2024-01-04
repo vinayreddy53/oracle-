@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  craete_instance:
+  create_instance:
     build:
       context: .
     image: instance_image:latest
